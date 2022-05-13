@@ -36,6 +36,11 @@ main#homepage {
     cursor: pointer;
 }
 
+.category-chip.selected {
+    background-color: var(--text-gray);
+    color: var(--white);
+}
+
 .category-chip:hover {
     background-color: var(--text-gray);
     color: var(--white);
