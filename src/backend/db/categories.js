@@ -9,25 +9,21 @@ export const categories = [
   {
     _id: uuid(),
     categoryName: "Breakdown",
-    description:
-      "Trailer Breakdown",
+    src: "./assets/images/breakdown.jpg"
   },
   {
     _id: uuid(),
     categoryName: "Podcast",
-    description:
-      "Podcast",
+    src: "./assets/images/podcast.jpg"
   },
   {
     _id: uuid(),
     categoryName: "Comics",
-    description:
-      "Comics",
+    src: "./assets/images/comics.jpg"
   },
   {
     _id: uuid(),
     categoryName: "Explained",
-    description:
-      "Explained",
+    src: "./assets/images/explained.jpg"
   },
 ];

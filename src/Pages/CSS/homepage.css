@@ -1,0 +1,40 @@
+.category {
+    display: grid;
+    place-content: center;
+    position: relative;
+    width: fit-content;
+    cursor: pointer;
+}
+  
+.fade {
+    z-index: 1;
+    position: absolute;
+    background-color: #fff;
+    background-color: white;
+    width: 100%;
+    height: 100%;
+    opacity: 25%;
+}
+  
+.cat-name {
+    z-index: 2;
+    position: absolute;
+    background-color: #fff;
+    place-self: center;
+    width: 100%;
+    text-align: center;
+    padding: 0.25rem;
+}
+
+.cat-catlog .category img {
+    width: 16rem;
+    aspect-ratio: 16 / 9;
+}
+
+.cat-catlog {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 2rem;
+    place-items: center;
+}
