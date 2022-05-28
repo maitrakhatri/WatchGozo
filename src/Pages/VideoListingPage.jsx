@@ -1,6 +1,7 @@
-import { Navbar, VideoThumbnail } from "../Components";
+import { AddToPlaylist, Navbar, VideoThumbnail } from "../Components";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { usePlaylist } from "../Context";
 
 export function VideoListingPage() {
 
@@ -8,6 +9,8 @@ export function VideoListingPage() {
     const [videos, setVideos] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState("All");
     const [filteredVideos, setFilteredVideos] = useState(videos);
+
+    const { showModal, setShowModal } = usePlaylist();
 
     const getCategories = async () => {
         try {
@@ -69,10 +72,14 @@ export function VideoListingPage() {
 
                 <h1 className="text-gray">All Videos</h1>
 
+                {showModal && <AddToPlaylist/>}
+
                 <div className="video-listing">
+
                     {filteredVideos.map(({title, channelName, _id}) => {
                         return <VideoThumbnail
-                            key={_id} 
+                            key={_id}
+                            vid={_id}
                             title={title}  
                             channelName={channelName} 
                             thumb={`https://i.ytimg.com/vi/${_id}/hq720.jpg`} />
