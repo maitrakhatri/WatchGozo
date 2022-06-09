@@ -29,16 +29,6 @@ export function VideoListingPage() {
         }
     }
 
-    const filter = () => {
-        if(selectedCategory === "All") {
-            setFilteredVideos(videos)
-        }
-        else{
-            setFilteredVideos(() => videos.filter((item) => item.categoryName === selectedCategory))
-            console.log(filteredVideos)
-        }
-    }
-
     useEffect(() => {
         getCategories();
         getVideos();
@@ -49,8 +39,17 @@ export function VideoListingPage() {
     }, [videos])
 
     useEffect(() => {
+        const filter = () => {
+            if(selectedCategory === "All") {
+                setFilteredVideos(videos)
+            }
+            else{
+                setFilteredVideos(() => videos.filter((item) => item.categoryName === selectedCategory))
+                console.log(filteredVideos)
+            }
+        }
         filter();
-    }, [selectedCategory])
+    }, [selectedCategory, filter()])
 
     return(
         <div className="video-listing-page">
