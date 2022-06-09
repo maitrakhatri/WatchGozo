@@ -49,7 +49,7 @@ export function VideoListingPage() {
             }
         }
         filter();
-    }, [selectedCategory, filter()])
+    }, [selectedCategory])
 
     return(
         <div className="video-listing-page">
