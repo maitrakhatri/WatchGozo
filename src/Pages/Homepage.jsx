@@ -40,7 +40,7 @@ export function Homepage() {
             <main id="homepage">
 
                 <div id="hero-video">
-                    <a href=""><img src="./assets/images/hero.jpg" alt="Moon Knight" class="img-res" /></a>
+                    <a href="#"><img src="./assets/images/hero.jpg" alt="Moon Knight" class="img-res" /></a>
                 </div>
 
                 <h2 className="headings text-gray"> Explore </h2>

@@ -2,7 +2,7 @@ export function Navbar() {
     return (
         <nav className="navbar bg-yellow">
             <div className="navbar-header">
-                <a href=""><p className="navbar-header-title text-l text-gray">WatchGozo</p></a>
+                <a href="#"><p className="navbar-header-title text-l text-gray">WatchGozo</p></a>
             </div>
             <div className="navbar-links">
                 <a href="./pages/videoListing.html"><p className="category-chip text-gray">Explore</p></a>
