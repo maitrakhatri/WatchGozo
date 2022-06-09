@@ -48,7 +48,7 @@ export function VideoListingPage() {
             }
         }
         filter();
-    }, [selectedCategory, videos. filteredVideos])
+    }, [selectedCategory, videos, filteredVideos])
 
     return(
         <div className="video-listing-page">
