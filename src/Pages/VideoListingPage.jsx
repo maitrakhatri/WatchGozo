@@ -45,11 +45,10 @@ export function VideoListingPage() {
             }
             else{
                 setFilteredVideos(() => videos.filter((item) => item.categoryName === selectedCategory))
-                console.log(filteredVideos)
             }
         }
         filter();
-    }, [selectedCategory])
+    }, [selectedCategory, videos. filteredVideos])
 
     return(
         <div className="video-listing-page">
