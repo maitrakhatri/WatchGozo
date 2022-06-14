@@ -87,3 +87,8 @@ main#homepage {
 button.gc {
     margin-bottom: 1rem;
 }
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
