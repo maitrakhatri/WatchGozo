@@ -5,21 +5,22 @@ import { token } from "./token-context"
 
 const PlaylistContext = createContext();
 
-const PlaylistProvider = ({children}) => {
+const PlaylistProvider = ({ children }) => {
 
     const [myPlaylists, setMyPlaylists] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [newPlaylist, setNewPlaylist] = useState("");
-    const [tv, setTV] = useState("")
+    const [targetVideo, setTargetVideo] = useState({});
+    const [specificPlaylist, setSpecificPlaylist] = useState({})
 
     const getAllPlaylists = async () => {
         try {
             const response = await axios.get("/api/user/playlists", {
                 headers: {
-                  authorization: token
+                    authorization: token
                 }
             });
-            //setMyPlaylists(response.data.playlists)
+            setMyPlaylists(response.data.playlists)
             console.log(response.data.playlists)
         }
         catch (error) {
@@ -29,16 +30,16 @@ const PlaylistProvider = ({children}) => {
 
     const createNewPlaylist = async (playlistName) => {
         try {
-            const response = await axios.post("/api/user/playlists",{
+            const response = await axios.post("/api/user/playlists", {
                 playlist: {
                     title: playlistName
                 }
             }, {
                 headers: {
-                  authorization: token
+                    authorization: token
                 }
             });
-            // setMyPlaylists(response.data.playlists)
+            setMyPlaylists(response.data.playlists)
             console.log(response.data.playlists)
         }
         catch (error) {
@@ -48,12 +49,12 @@ const PlaylistProvider = ({children}) => {
 
     const deletePlaylist = async (playlistId) => {
         try {
-            const response = await axios.delete(`/api/user/playlists/${playlistId}`,{
+            const response = await axios.delete(`/api/user/playlists/${playlistId}`, {
                 headers: {
-                  authorization: token
+                    authorization: token
                 }
             });
-            // setMyPlaylists(response.data.playlists)
+            setMyPlaylists(response.data.playlists)
             console.log(response.data.playlists)
         }
         catch (error) {
@@ -65,10 +66,10 @@ const PlaylistProvider = ({children}) => {
         try {
             const response = await axios.get(`/api/user/playlists/${playlistId}`, {
                 headers: {
-                  authorization: token
+                    authorization: token
                 }
             });
-            // setMyPlaylists(response.data.playlist)
+            setSpecificPlaylist(response.data.playlist)
             console.log(response.data.playlist)
         }
         catch (error) {
@@ -78,13 +79,12 @@ const PlaylistProvider = ({children}) => {
 
     const addVideoToPlaylist = async (playlistId, video) => {
         try {
-            const response = await axios.post(`/api/user/playlists/${playlistId}`,{video}, {
+            const response = await axios.post(`/api/user/playlists/${playlistId}`, { video }, {
                 headers: {
-                  authorization: token
+                    authorization: token
                 }
             });
-            // setMyPlaylists(response.data.playlist)
-            //getAllPlaylists();
+            setMyPlaylists(() => myPlaylists.map((playlist) => playlist._id === playlistId ? response.data.playlist : playlist) )
             console.log(response.data.playlist)
         }
         catch (error) {
@@ -94,13 +94,12 @@ const PlaylistProvider = ({children}) => {
 
     const deleteVideoFromPlaylist = async (playlistId, videoId) => {
         try {
-            const response = await axios.delete(`/api/user/playlists/${playlistId}/${videoId}`,{
+            const response = await axios.delete(`/api/user/playlists/${playlistId}/${videoId}`, {
                 headers: {
-                  authorization: token
+                    authorization: token
                 }
             });
-            // setMyPlaylists(response.data.playlist)
-            //getAllPlaylists();
+            setMyPlaylists(() => myPlaylists.map((playlist) => playlist._id === playlistId ? response.data.playlist : playlist) )
             console.log(response.data.playlist)
         }
         catch (error) {
@@ -108,7 +107,7 @@ const PlaylistProvider = ({children}) => {
         }
     }
 
-    return <PlaylistContext.Provider value={{ getAllPlaylists, createNewPlaylist, deletePlaylist, getSpecificPlaylists, addVideoToPlaylist, deleteVideoFromPlaylist, myPlaylists, showModal, setShowModal, newPlaylist, setNewPlaylist, tv, setTV }}>
+    return <PlaylistContext.Provider value={{ getAllPlaylists, createNewPlaylist, deletePlaylist, getSpecificPlaylists, addVideoToPlaylist, deleteVideoFromPlaylist, myPlaylists, showModal, setShowModal, newPlaylist, setNewPlaylist, targetVideo, setTargetVideo }}>
         {children}
     </PlaylistContext.Provider>
 }

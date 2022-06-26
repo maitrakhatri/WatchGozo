@@ -10,7 +10,7 @@ export function VideoListingPage() {
     const [selectedCategory, setSelectedCategory] = useState("All");
     const [filteredVideos, setFilteredVideos] = useState(videos);
 
-    const { showModal, setShowModal } = usePlaylist();
+    const { showModal } = usePlaylist();
 
     const getCategories = async () => {
         try {
@@ -76,13 +76,13 @@ export function VideoListingPage() {
 
                 <div className="video-listing">
 
-                    {filteredVideos.map(({title, channelName, _id}) => {
+                    {filteredVideos.map((video) => {
                         return <VideoThumbnail
-                            key={_id}
-                            vid={_id}
-                            title={title}  
-                            channelName={channelName} 
-                            thumb={`https://i.ytimg.com/vi/${_id}/hq720.jpg`} />
+                            key={video._id}
+                            vid={video}
+                            title={video.title}  
+                            channelName={video.channelName} 
+                            thumb={`https://i.ytimg.com/vi/${video._id}/hq720.jpg`} />
                     })}
                 </div>
             </main>
