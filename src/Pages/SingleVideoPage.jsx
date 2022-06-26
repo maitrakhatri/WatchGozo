@@ -24,7 +24,7 @@ export function SingleVideoPage() {
 
   useEffect(() => {
     setOurVideo(allVideos.find((item) => item._id === videoId));
-  }, [allVideos]);
+  }, [allVideos, videoId]);
 
   return (
     <div className="single-video-page">
