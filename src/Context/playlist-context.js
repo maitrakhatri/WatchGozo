@@ -101,7 +101,7 @@ const PlaylistProvider = ({ children }) => {
         }
     }
 
-    return <PlaylistContext.Provider value={{ getAllPlaylists, createNewPlaylist, deletePlaylist, getSpecificPlaylists, addVideoToPlaylist, deleteVideoFromPlaylist, myPlaylists, showModal, setShowModal, newPlaylist, setNewPlaylist, targetVideo, setTargetVideo }}>
+    return <PlaylistContext.Provider value={{ getAllPlaylists, createNewPlaylist, deletePlaylist, getSpecificPlaylists, addVideoToPlaylist, deleteVideoFromPlaylist, myPlaylists, showModal, setShowModal, newPlaylist, setNewPlaylist, targetVideo, setTargetVideo, specificPlaylist }}>
         {children}
     </PlaylistContext.Provider>
 }
