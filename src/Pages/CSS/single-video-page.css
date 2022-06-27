@@ -1,0 +1,43 @@
+.video-container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.video-container .mainvideo {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+}
+
+.title-n-action {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title-n-action .title {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.title .video-title {
+    font-size: x-large;
+    font-weight: normal;
+}
+
+.title .channel-name {
+    font-weight: bold;
+}
+
+.title-n-action .action {
+    display: flex;
+    gap: 1rem;
+}
+
+.title-n-action .action img:hover {
+    cursor: pointer;
+} 
