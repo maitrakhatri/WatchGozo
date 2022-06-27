@@ -1,34 +1,23 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { Category, Navbar, VideoThumbnail } from "../Components";
+import { useVideo } from "../Context";
 import "./CSS/homepage.css";
 
 export function Homepage() {
-  const [categories, setCategories] = useState([]);
-  const [videos, setVideos] = useState([]);
+  
+  const { getCategories, getVideos, categories, videos } = useVideo()
 
-  const getCategories = async () => {
-    try {
-      const response = await axios.get("/api/categories");
-      setCategories(response.data.categories);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const getVideos = async () => {
-    try {
-      const response = await axios.get("/api/videos");
-      setVideos(response.data.videos.slice(0, 4));
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const [trendingVideos, setTrendingVideos] = useState([])
 
   useEffect(() => {
     getCategories();
     getVideos();
   }, []);
+
+  useEffect(() => {
+    setTrendingVideos(videos.slice(0,4))
+  }, [videos])
 
   return (
     <div className="Homepage">
@@ -56,7 +45,7 @@ export function Homepage() {
         <h2 className="headings text-gray"> Trending </h2>
 
         <div className="video-listing">
-          {videos.map((video) => {
+          {trendingVideos.map((video) => {
             return (
               <VideoThumbnail
                 key={video._id}

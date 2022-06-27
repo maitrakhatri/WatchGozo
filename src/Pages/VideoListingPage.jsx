@@ -1,33 +1,21 @@
 import { AddToPlaylistModal, Navbar, VideoThumbnail } from "../Components";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { usePlaylist } from "../Context";
+import { usePlaylist, useVideo } from "../Context";
 
-export function VideoListingPage({ category }) {
-  const [categories, setCategories] = useState([]);
-  const [videos, setVideos] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState(category ?? "All");
-  const [filteredVideos, setFilteredVideos] = useState(videos);
-
+export function VideoListingPage() {
   const { showModal } = usePlaylist();
 
-  const getCategories = async () => {
-    try {
-      const response = await axios.get("/api/categories");
-      setCategories(response.data.categories);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  const getVideos = async () => {
-    try {
-      const response = await axios.get("/api/videos");
-      setVideos(response.data.videos);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const {
+    categories,
+    videos,
+    selectedCategory,
+    setSelectedCategory,
+    filteredVideos,
+    setFilteredVideos,
+    getVideos,
+    getCategories,
+  } = useVideo();
 
   useEffect(() => {
     getCategories();
