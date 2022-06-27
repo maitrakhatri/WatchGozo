@@ -1,13 +1,15 @@
-import { Navbar, VideoThumbnail } from "../Components";
+import { AddToPlaylistModal, Navbar, VideoThumbnail } from "../Components";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { usePlaylist } from "../Context";
 
-export function VideoListingPage({category}) {
+export function VideoListingPage({ category }) {
   const [categories, setCategories] = useState([]);
   const [videos, setVideos] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(category ?? "All");
   const [filteredVideos, setFilteredVideos] = useState(videos);
+
+  const { showModal } = usePlaylist();
 
   const getCategories = async () => {
     try {
@@ -80,18 +82,18 @@ export function VideoListingPage({category}) {
 
         <h1 className="text-gray">All Videos</h1>
 
+        {showModal && <AddToPlaylistModal />}
+
         <div className="video-listing">
-          {filteredVideos.map(({ title, channelName, _id }) => {
+          {filteredVideos.map((video) => {
             return (
-              <Link to={`/${_id}`}>
-                {" "}
-                <VideoThumbnail
-                  key={_id}
-                  title={title}
-                  channelName={channelName}
-                  thumb={`https://i.ytimg.com/vi/${_id}/hq720.jpg`}
-                />{" "}
-              </Link>
+              <VideoThumbnail
+                key={video._id}
+                title={video.title}
+                vid={video}
+                channelName={video.channelName}
+                thumb={`https://i.ytimg.com/vi/${video._id}/hq720.jpg`}
+              />
             );
           })}
         </div>
