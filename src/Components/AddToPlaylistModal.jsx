@@ -28,7 +28,7 @@ export function AddToPlaylistModal() {
     }
   };
 
-  const isInPlaylist = (targetVideo, playlistId) => {
+  const isInPlaylist = (targetVideo, playlistId, myPlaylists) => {
     const thisPlaylist = myPlaylists.find((item) => item._id === playlistId);
     if (thisPlaylist?.videos.some((item) => item._id === targetVideo._id)) {
       return true;
@@ -55,7 +55,7 @@ export function AddToPlaylistModal() {
                 type="checkbox"
                 name="playlist"
                 value={playlist.title}
-                checked={isInPlaylist(targetVideo, playlist._id)}
+                checked={isInPlaylist(targetVideo, playlist._id, myPlaylists)}
                 onChange={(e) => {
                   togglePlaylist(e, targetVideo);
                 }}
