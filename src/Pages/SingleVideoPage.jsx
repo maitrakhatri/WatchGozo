@@ -1,13 +1,16 @@
-import { Navbar } from "../Components";
+import { Navbar, AddToPlaylistIcon, AddToPlaylistModal } from "../Components";
 import "./CSS/single-video-page.css";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { usePlaylist } from "../Context";
 
 export function SingleVideoPage() {
   const { videoId } = useParams();
   const [allVideos, setAllVideos] = useState([]);
   const [ourVideo, setOurVideo] = useState({});
+
+  const { showModal } = usePlaylist();
 
   const getVideos = async () => {
     try {
@@ -29,6 +32,9 @@ export function SingleVideoPage() {
   return (
     <div className="single-video-page">
       <Navbar />
+
+      {showModal && <AddToPlaylistModal />}
+
       <main id="homepage">
         <div class="video-container">
           <iframe
@@ -50,10 +56,9 @@ export function SingleVideoPage() {
                 src="../assets/icons/thumb_up_alt_black_36dp.svg"
                 alt="like"
               />
-              <img
-                src="../assets/icons/playlist_add_black_36dp.svg"
-                alt="add to playlist"
-              />
+
+              <AddToPlaylistIcon vid={ourVideo} />
+
               <img
                 src="../assets/icons/watch_later_black_36dp.svg"
                 alt="add to watch later"

@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { Category, Navbar, VideoThumbnail } from "../Components";
 import "./CSS/homepage.css";
 
@@ -57,17 +56,15 @@ export function Homepage() {
         <h2 className="headings text-gray"> Trending </h2>
 
         <div className="video-listing">
-          {videos.map(({ title, channelName, _id }) => {
+          {videos.map((video) => {
             return (
-              <Link to={`${_id}`}>
-                {" "}
-                <VideoThumbnail
-                  key={_id}
-                  title={title}
-                  channelName={channelName}
-                  thumb={`https://i.ytimg.com/vi/${_id}/hq720.jpg`}
-                />
-              </Link>
+              <VideoThumbnail
+                key={video._id}
+                title={video.title}
+                channelName={video.channelName}
+                vid={video}
+                thumb={`https://i.ytimg.com/vi/${video._id}/hq720.jpg`}
+              />
             );
           })}
         </div>
