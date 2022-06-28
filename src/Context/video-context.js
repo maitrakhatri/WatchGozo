@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react"
+import { createContext, useContext, useState, useEffect } from "react"
 import axios from "axios"
 
 const VideoContext = createContext();
@@ -28,7 +28,29 @@ const VideoProvider = ({ children }) => {
         }
     };
 
-    return <VideoContext.Provider value={{ categories, setCategories, videos, setVideos, selectedCategory, setSelectedCategory, filteredVideos, setFilteredVideos, getVideos, getCategories }}>
+    useEffect(() => {
+        getCategories();
+        getVideos();
+    }, []);
+
+    useEffect(() => {
+        setFilteredVideos(videos);
+      }, [videos]);
+    
+      useEffect(() => {
+        const filter = () => {
+          if (selectedCategory === "All") {
+            setFilteredVideos(videos);
+          } else {
+            setFilteredVideos(() =>
+              videos.filter((item) => item.categoryName === selectedCategory)
+            );
+          }
+        };
+        filter();
+      }, [selectedCategory, videos, filteredVideos]);
+
+    return <VideoContext.Provider value={{ categories, setCategories, videos, setVideos, selectedCategory, setSelectedCategory, filteredVideos, setFilteredVideos }}>
         {children}
     </VideoContext.Provider>
 }

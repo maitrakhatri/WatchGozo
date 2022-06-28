@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useState, useEffect } from "react";
 import { Category, Navbar, VideoThumbnail } from "../Components";
 import { useVideo } from "../Context";
@@ -6,14 +5,9 @@ import "./CSS/homepage.css";
 
 export function Homepage() {
   
-  const { getCategories, getVideos, categories, videos } = useVideo()
+  const { categories, videos } = useVideo()
 
   const [trendingVideos, setTrendingVideos] = useState([])
-
-  useEffect(() => {
-    getCategories();
-    getVideos();
-  }, []);
 
   useEffect(() => {
     setTrendingVideos(videos.slice(0,4))
