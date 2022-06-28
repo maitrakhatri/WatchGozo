@@ -1,6 +1,5 @@
 import { AddToPlaylistModal, Navbar, VideoThumbnail } from "../Components";
-import axios from "axios";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { usePlaylist, useVideo } from "../Context";
 
 export function VideoListingPage() {
@@ -13,14 +12,7 @@ export function VideoListingPage() {
     setSelectedCategory,
     filteredVideos,
     setFilteredVideos,
-    getVideos,
-    getCategories,
   } = useVideo();
-
-  useEffect(() => {
-    getCategories();
-    getVideos();
-  }, []);
 
   useEffect(() => {
     setFilteredVideos(videos);
