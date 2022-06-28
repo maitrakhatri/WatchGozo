@@ -1,5 +1,5 @@
 import { AddToPlaylistModal, Navbar, VideoThumbnail } from "../Components";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import { usePlaylist, useVideo } from "../Context";
 
 export function VideoListingPage() {
@@ -7,29 +7,10 @@ export function VideoListingPage() {
 
   const {
     categories,
-    videos,
     selectedCategory,
     setSelectedCategory,
     filteredVideos,
-    setFilteredVideos,
   } = useVideo();
-
-  useEffect(() => {
-    setFilteredVideos(videos);
-  }, [videos]);
-
-  useEffect(() => {
-    const filter = () => {
-      if (selectedCategory === "All") {
-        setFilteredVideos(videos);
-      } else {
-        setFilteredVideos(() =>
-          videos.filter((item) => item.categoryName === selectedCategory)
-        );
-      }
-    };
-    filter();
-  }, [selectedCategory, videos, filteredVideos]);
 
   return (
     <div className="video-listing-page">

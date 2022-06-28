@@ -33,6 +33,23 @@ const VideoProvider = ({ children }) => {
         getVideos();
     }, []);
 
+    useEffect(() => {
+        setFilteredVideos(videos);
+      }, [videos]);
+    
+      useEffect(() => {
+        const filter = () => {
+          if (selectedCategory === "All") {
+            setFilteredVideos(videos);
+          } else {
+            setFilteredVideos(() =>
+              videos.filter((item) => item.categoryName === selectedCategory)
+            );
+          }
+        };
+        filter();
+      }, [selectedCategory, videos, filteredVideos]);
+
     return <VideoContext.Provider value={{ categories, setCategories, videos, setVideos, selectedCategory, setSelectedCategory, filteredVideos, setFilteredVideos }}>
         {children}
     </VideoContext.Provider>
