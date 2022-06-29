@@ -5,6 +5,7 @@ import App from "./App";
 import { makeServer } from "./server";
 import { BrowserRouter } from "react-router-dom";
 import { PlaylistProvider, VideoProvider } from "./Context";
+import { HistoryProvider } from "./Context/history-context";
 
 // Call make Server
 makeServer();
@@ -13,9 +14,11 @@ ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <VideoProvider>
-        <PlaylistProvider>
-          <App />
-        </PlaylistProvider>
+        <HistoryProvider>
+          <PlaylistProvider>
+            <App />
+          </PlaylistProvider>
+        </HistoryProvider>
       </VideoProvider>
     </BrowserRouter>
   </React.StrictMode>,
