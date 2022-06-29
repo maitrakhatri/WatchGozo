@@ -15,7 +15,6 @@ const WatchLaterProvider = ({ children }) => {
                     authorization: token
                 }
             })
-            console.log(response.data.watchlater)
             setWatchLater(response.data.watchlater)
         }
         catch (error) {
@@ -32,7 +31,6 @@ const WatchLaterProvider = ({ children }) => {
                     authorization: token
                 }
             })
-            console.log(response.data.watchlater)
             setWatchLater(response.data.watchlater)
         }
         catch (error) {
@@ -47,7 +45,6 @@ const WatchLaterProvider = ({ children }) => {
                     authorization: token
                 }
             })
-            console.log(response.data.watchlater)
             setWatchLater(response.data.watchlater)
         }
         catch (error) {
