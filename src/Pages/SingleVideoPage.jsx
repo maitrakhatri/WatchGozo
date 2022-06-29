@@ -1,4 +1,4 @@
-import { Navbar, AddToPlaylistIcon, AddToPlaylistModal } from "../Components";
+import { Navbar, AddToPlaylistIcon, AddToPlaylistModal, AddToWatchLaterIcon } from "../Components";
 import "./CSS/single-video-page.css";
 import { useParams } from "react-router-dom";
 import axios from "axios";
@@ -59,10 +59,7 @@ export function SingleVideoPage() {
 
               <AddToPlaylistIcon vid={ourVideo} />
 
-              <img
-                src="../assets/icons/watch_later_black_36dp.svg"
-                alt="add to watch later"
-              />
+              <AddToWatchLaterIcon/>
             </div>
           </div>
         </div>

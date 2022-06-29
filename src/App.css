@@ -77,6 +77,11 @@ main#homepage {
     justify-content: space-between;
 }
 
+.channel-name .icons {
+    display: flex;
+    gap: .25rem
+}
+
 .heading {
     width: 100%;
     display: flex;
@@ -127,4 +132,14 @@ a {
     top: 5px;
     right: 5px;
     cursor: pointer;
+}
+
+.video:hover {
+    background-color: #3333330f;
+}
+
+.video a {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem 2rem;
 }
