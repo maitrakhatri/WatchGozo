@@ -59,7 +59,7 @@ export function SingleVideoPage() {
 
               <AddToPlaylistIcon vid={ourVideo} />
 
-              <AddToWatchLaterIcon/>
+              <AddToWatchLaterIcon video={ourVideo}/>
             </div>
           </div>
         </div>

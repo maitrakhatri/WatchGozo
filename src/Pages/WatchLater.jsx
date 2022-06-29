@@ -1,5 +1,5 @@
 import { Navbar, PlaylistVideo } from "../Components";
-import { useWatchLater } from "../Context";
+import { useWatchLater } from "../Context/watchLater-context";
 
 export function WatchLater() {
   const { watchLater } = useWatchLater();
@@ -14,10 +14,10 @@ export function WatchLater() {
         <div className="playlist-videos">
           {watchLater?.map((video) => (
             <PlaylistVideo
-              src={`https://i.ytimg.com/vi/${video._id}/hq720.jpg`}
-              title={video.title}
-              channelName={video.channelName}
-              id={video._id}
+              src={`https://i.ytimg.com/vi/${video?._id}/hq720.jpg`}
+              title={video?.title}
+              channelName={video?.channelName}
+              id={video?._id}
               video={video}
             />
           ))}
