@@ -15,7 +15,6 @@ const HistoryProvider = ({ children }) => {
                     authorization: token
                 }
             })
-            console.log(response.data.history)
             setMyHistory(response.data.history)
         }
         catch (error) {
@@ -32,7 +31,6 @@ const HistoryProvider = ({ children }) => {
                     authorization: token
                 }
             })
-            console.log(response.data.history)
             setMyHistory(response.data.history)
         }
         catch (error) {
@@ -47,7 +45,6 @@ const HistoryProvider = ({ children }) => {
                     authorization: token
                 }
             })
-            console.log(response.data.history)
             setMyHistory(response.data.history)
         }
         catch (error) {
@@ -62,7 +59,6 @@ const HistoryProvider = ({ children }) => {
                     authorization: token
                 }
             })
-            console.log(response.data.history)
             setMyHistory(response.data.history)
         }
         catch (error) {
