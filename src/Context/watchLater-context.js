@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react"
+import { createContext, useContext, useEffect, useState } from "react"
 import axios from "axios"
 import { token } from "./token-context"
 
@@ -51,6 +51,10 @@ const WatchLaterProvider = ({ children }) => {
             console.log(error)
         }
     }
+
+    useEffect(() => {
+        getWatchLater()
+    }, [])
 
     return <WatchLaterContext.Provider value={{ getWatchLater, addToWatchLater, removeFromWatchLater, watchLater }}>
         {children}

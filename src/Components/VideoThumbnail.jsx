@@ -14,7 +14,7 @@ export function VideoThumbnail({ title, channelName, thumb, vid, inHistory }) {
     <div className="video-thumbnail">
       {showModal && <AddToPlaylistModal />}
 
-      <Link to={`/${vid._id}`}>
+      <Link to={`/watch=${vid._id}`}>
         <img
           class="img-res"
           src={thumb}
