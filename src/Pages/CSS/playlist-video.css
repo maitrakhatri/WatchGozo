@@ -1,0 +1,24 @@
+.video .thumb {
+    width: 10rem;
+}
+
+.video {
+    display: flex;
+    align-items: flex-start;
+    gap: 3rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--text-gray);
+    cursor: pointer;
+    width: 50rem;
+}
+
+.video .delete {
+    place-self: center;
+    margin-left: auto;
+}
+
+.playlist-videos {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}

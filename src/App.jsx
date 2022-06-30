@@ -1,5 +1,11 @@
 import "./App.css";
-import { Homepage, VideoListingPage, SingleVideoPage, History } from "./Pages";
+import {
+  Homepage,
+  VideoListingPage,
+  SingleVideoPage,
+  History,
+  WatchLater,
+} from "./Pages";
 import { Routes, Route } from "react-router-dom";
 
 function App() {
@@ -10,6 +16,7 @@ function App() {
         <Route path="/explore" element={<VideoListingPage />} />
         <Route path="/:videoId" element={<SingleVideoPage />} />
         <Route path="/history" element={<History />} />
+        <Route path="/watchlater" element={<WatchLater />} />
       </Routes>
     </div>
   );

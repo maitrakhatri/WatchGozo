@@ -12,7 +12,7 @@ export function Navbar() {
         <Link to="/explore">
           <p className="category-chip text-gray">Explore</p>
         </Link>
-        <Link to="watch-later">
+        <Link to="/watchlater">
           <img
             src="./assets/icons/watch_later_white_36dp.svg"
             alt="watch later"
