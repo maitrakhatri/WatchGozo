@@ -1,6 +1,7 @@
 import axios from "axios";
 import { createContext, useContext, useEffect } from "react"
 import { useState } from "react";
+import { useToast } from "./toast-context";
 import { token } from "./token-context"
 
 const PlaylistContext = createContext();
@@ -12,6 +13,7 @@ const PlaylistProvider = ({ children }) => {
     const [newPlaylist, setNewPlaylist] = useState("");
     const [targetVideo, setTargetVideo] = useState({});
     const [specificPlaylist, setSpecificPlaylist] = useState({})
+    const { setShowToast, setToastTitle } = useToast()
 
     const getAllPlaylists = async () => {
         try {
@@ -39,6 +41,8 @@ const PlaylistProvider = ({ children }) => {
                 }
             });
             setMyPlaylists(response.data.playlists)
+            setToastTitle("New playlist created")
+            setShowToast(true)
         }
         catch (error) {
             console.log(error)
@@ -81,6 +85,8 @@ const PlaylistProvider = ({ children }) => {
                 }
             });
             setMyPlaylists(() => myPlaylists.map((playlist) => playlist._id === playlistId ? response.data.playlist : playlist))
+            setToastTitle("Video added to Playlist")
+            setShowToast(true)
         }
         catch (error) {
             console.log(error)
@@ -95,6 +101,8 @@ const PlaylistProvider = ({ children }) => {
                 }
             });
             setMyPlaylists(() => myPlaylists.map((playlist) => playlist._id === playlistId ? response.data.playlist : playlist))
+            setToastTitle("Video removed from Playlist")
+            setShowToast(true)
         }
         catch (error) {
             console.log(error)

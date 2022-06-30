@@ -147,3 +147,12 @@ a {
 #like-icon {
     width: 2.25rem;
 }
+
+.alert {
+    width: fit-content;
+    position: fixed;
+    bottom: 1rem;
+    left: 1rem;
+    border-left: 5px solid var(--text-gray);
+    z-index: 9;
+}

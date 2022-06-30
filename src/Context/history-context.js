@@ -1,12 +1,14 @@
 import { createContext, useContext, useState } from "react"
 import axios from "axios"
 import { token } from "./token-context"
+import { useToast } from "./toast-context"
 
 const HistoryContext = createContext()
 
 const HistoryProvider = ({ children }) => {
 
     const [myHistory, setMyHistory] = useState()
+    const { setShowToast, setToastTitle } = useToast()
 
     const getHistory = async () => {
         try {
@@ -46,6 +48,8 @@ const HistoryProvider = ({ children }) => {
                 }
             })
             setMyHistory(response.data.history)
+            setToastTitle("Video removed from History")
+            setShowToast(true)
         }
         catch (error) {
             console.log(error)
@@ -60,6 +64,8 @@ const HistoryProvider = ({ children }) => {
                 }
             })
             setMyHistory(response.data.history)
+            setToastTitle("History cleared")
+            setShowToast(true)
         }
         catch (error) {
             console.log(error)
