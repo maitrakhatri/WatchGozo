@@ -1,7 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react"
 import axios from "axios"
-import { token } from "./token-context"
-import { useToast } from "./toast-context"
+import { useAuth, useToast, useToken } from "."
 
 const LikeContext = createContext()
 
@@ -9,36 +8,46 @@ const LikeProvider = ({ children }) => {
 
     const [likedVideos, setLikedVideos] = useState([])
     const { setShowToast, setToastTitle } = useToast()
+    const { token } = useToken()
+    const { isLoggedIn } = useAuth()
 
     const getLikedVideos = async () => {
-        try {
-            const response = await axios.get("/api/user/likes", {
-                headers: {
-                    authorization: token
-                }
-            })
-            setLikedVideos(response.data.likes)
-        }
-        catch (error) {
-            console.log(error)
+        if (isLoggedIn) {
+            try {
+                const response = await axios.get("/api/user/likes", {
+                    headers: {
+                        authorization: token
+                    }
+                })
+                setLikedVideos(response.data.likes)
+            }
+            catch (error) {
+                console.log(error)
+            }
         }
     }
 
     const addToLikedVideos = async (video) => {
-        try {
-            const response = await axios.post("/api/user/likes", {
-                video
-            }, {
-                headers: {
-                    authorization: token
-                }
-            })
-            setLikedVideos(response.data.likes)
-            setToastTitle("Added to Liked Videos")
-            setShowToast(true)
+        if (isLoggedIn) {
+            try {
+                const response = await axios.post("/api/user/likes", {
+                    video
+                }, {
+                    headers: {
+                        authorization: token
+                    }
+                })
+                setLikedVideos(response.data.likes)
+                setToastTitle("Added to Liked Videos")
+                setShowToast(true)
+            }
+            catch (error) {
+                console.log(error)
+            }
         }
-        catch (error) {
-            console.log(error)
+        else {
+            setToastTitle("You need to Login")
+            setShowToast(true)
         }
     }
 

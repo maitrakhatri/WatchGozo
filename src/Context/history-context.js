@@ -1,7 +1,6 @@
 import { createContext, useContext, useState } from "react"
 import axios from "axios"
-import { token } from "./token-context"
-import { useToast } from "./toast-context"
+import { useAuth, useToast, useToken } from "."
 
 const HistoryContext = createContext()
 
@@ -9,6 +8,8 @@ const HistoryProvider = ({ children }) => {
 
     const [myHistory, setMyHistory] = useState()
     const { setShowToast, setToastTitle } = useToast()
+    const { token } = useToken()
+    const { isLoggedIn } = useAuth()
 
     const getHistory = async () => {
         try {
@@ -25,18 +26,21 @@ const HistoryProvider = ({ children }) => {
     }
 
     const addToHistory = async (video) => {
-        try {
-            const response = await axios.post("/api/user/history", {
-                video
-            }, {
-                headers: {
-                    authorization: token
-                }
-            })
-            setMyHistory(response.data.history)
-        }
-        catch (error) {
-            console.log(error)
+        if (isLoggedIn) {
+            try {
+                const response = await axios.post("/api/user/history", {
+                    video
+                }, {
+                    headers: {
+                        authorization: token
+                    }
+                })
+                setMyHistory(response.data.history)
+            }
+            catch (error) {
+                console.log(error)
+            }
+
         }
     }
 

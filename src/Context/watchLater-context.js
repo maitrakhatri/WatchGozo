@@ -1,7 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react"
 import axios from "axios"
-import { token } from "./token-context"
-import { useToast } from "./toast-context"
+import { useAuth, useToast, useToken } from "."
 
 const WatchLaterContext = createContext()
 
@@ -9,36 +8,46 @@ const WatchLaterProvider = ({ children }) => {
 
     const [watchLater, setWatchLater] = useState([])
     const { setShowToast, setToastTitle } = useToast()
+    const { token } = useToken()
+    const { isLoggedIn } = useAuth()
 
     const getWatchLater = async () => {
-        try {
-            const response = await axios.get('/api/user/watchlater', {
-                headers: {
-                    authorization: token
-                }
-            })
-            setWatchLater(response.data.watchlater)
-        }
-        catch (error) {
-            console.log(error)
+        if (isLoggedIn) {
+            try {
+                const response = await axios.get('/api/user/watchlater', {
+                    headers: {
+                        authorization: token
+                    }
+                })
+                setWatchLater(response.data.watchlater)
+            }
+            catch (error) {
+                console.log(error)
+            }
         }
     }
 
     const addToWatchLater = async (video) => {
-        try {
-            const response = await axios.post('/api/user/watchlater', {
-                video
-            }, {
-                headers: {
-                    authorization: token
-                }
-            })
-            setWatchLater(response.data.watchlater)
-            setToastTitle("Added to Watch Later")
-            setShowToast(true)
+        if (isLoggedIn) {
+            try {
+                const response = await axios.post('/api/user/watchlater', {
+                    video
+                }, {
+                    headers: {
+                        authorization: token
+                    }
+                })
+                setWatchLater(response.data.watchlater)
+                setToastTitle("Added to Watch Later")
+                setShowToast(true)
+            }
+            catch (error) {
+                console.log(error)
+            }
         }
-        catch (error) {
-            console.log(error)
+        else {
+            setToastTitle("You need to LogIn")
+            setShowToast(true)
         }
     }
 

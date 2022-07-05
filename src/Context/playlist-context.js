@@ -1,8 +1,6 @@
 import axios from "axios";
-import { createContext, useContext, useEffect } from "react"
-import { useState } from "react";
-import { useToast } from "./toast-context";
-import { token } from "./token-context"
+import { createContext, useContext, useEffect, useState } from "react"
+import { useAuth, useToast, useToken } from ".";
 
 const PlaylistContext = createContext();
 
@@ -14,18 +12,23 @@ const PlaylistProvider = ({ children }) => {
     const [targetVideo, setTargetVideo] = useState({});
     const [specificPlaylist, setSpecificPlaylist] = useState({})
     const { setShowToast, setToastTitle } = useToast()
+    const { token } = useToken()
+    const { isLoggedIn } = useAuth()
 
     const getAllPlaylists = async () => {
-        try {
-            const response = await axios.get("/api/user/playlists", {
-                headers: {
-                    authorization: token
-                }
-            });
-            setMyPlaylists(response.data.playlists)
-        }
-        catch (error) {
-            console.log(error)
+        if (isLoggedIn) {
+            try {
+                const response = await axios.get("/api/user/playlists", {
+                    headers: {
+                        authorization: token
+                    }
+                });
+                setMyPlaylists(response.data.playlists)
+            }
+            catch (error) {
+                console.log(error)
+            }
+
         }
     }
 

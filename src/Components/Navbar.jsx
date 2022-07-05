@@ -1,6 +1,10 @@
 import { Link } from "react-router-dom";
+import { useAuth } from "../Context";
 
 export function Navbar() {
+
+  const { isLoggedIn, logOutHandler } = useAuth()
+
   return (
     <nav className="navbar bg-yellow">
       <div className="navbar-header">
@@ -27,9 +31,22 @@ export function Navbar() {
         <Link to="/history">
           <img src="./assets/icons/history_white_36dp.svg" alt="history" />
         </Link>
-        <Link to="/login">
-          <button className="btn btn-lightblue">Log In</button>
-        </Link>
+        {isLoggedIn ? (
+          <Link to="/">
+            <button
+              className="btn btn-lightblue"
+              onClick={() => {
+                logOutHandler();
+              }}
+            >
+              Log Out
+            </button>{" "}
+          </Link>
+        ) : (
+          <Link to="/login">
+            <button className="btn btn-lightblue">Log In</button>{" "}
+          </Link>
+        )}
       </div>
     </nav>
   );
