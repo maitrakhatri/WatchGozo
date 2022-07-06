@@ -1,0 +1,23 @@
+.playlist-listing {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat( auto-fit, minmax(25rem, 1fr) );
+    gap: 2rem;
+}
+
+.playlist {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    border: 2px solid var(--text-gray);
+    border-radius: .25rem;
+    cursor: pointer;
+    background-color: #ffffff;
+}
+
+.playlist .name {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}

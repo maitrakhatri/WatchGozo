@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createContext, useContext } from "react"
+import { createContext, useContext, useEffect } from "react"
 import { useState } from "react";
 import { token } from "./token-context"
 
@@ -100,6 +100,10 @@ const PlaylistProvider = ({ children }) => {
             console.log(error)
         }
     }
+
+    useEffect(() => {
+        getAllPlaylists()
+    }, [])
 
     return <PlaylistContext.Provider value={{ getAllPlaylists, createNewPlaylist, deletePlaylist, getSpecificPlaylists, addVideoToPlaylist, deleteVideoFromPlaylist, myPlaylists, showModal, setShowModal, newPlaylist, setNewPlaylist, targetVideo, setTargetVideo, specificPlaylist }}>
         {children}

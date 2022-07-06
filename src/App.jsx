@@ -5,6 +5,9 @@ import {
   SingleVideoPage,
   History,
   WatchLater,
+  Playlists,
+  LikedVideos,
+  SpecificPlaylist,
 } from "./Pages";
 import { Routes, Route } from "react-router-dom";
 
@@ -14,9 +17,12 @@ function App() {
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/explore" element={<VideoListingPage />} />
-        <Route path="/:videoId" element={<SingleVideoPage />} />
+        <Route path="/watch=:videoId" element={<SingleVideoPage />} />
         <Route path="/history" element={<History />} />
         <Route path="/watchlater" element={<WatchLater />} />
+        <Route path="/playlists" element={<Playlists />} />
+        <Route path="/liked-videos" element={<LikedVideos />} />
+        <Route path="/playlists/:playlistTitle" element={<SpecificPlaylist />} />
       </Routes>
     </div>
   );
