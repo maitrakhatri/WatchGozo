@@ -1,12 +1,14 @@
 import { createContext, useContext, useEffect, useState } from "react"
 import axios from "axios"
 import { token } from "./token-context"
+import { useToast } from "./toast-context"
 
 const LikeContext = createContext()
 
 const LikeProvider = ({ children }) => {
 
     const [likedVideos, setLikedVideos] = useState([])
+    const { setShowToast, setToastTitle } = useToast()
 
     const getLikedVideos = async () => {
         try {
@@ -32,6 +34,8 @@ const LikeProvider = ({ children }) => {
                 }
             })
             setLikedVideos(response.data.likes)
+            setToastTitle("Added to Liked Videos")
+            setShowToast(true)
         }
         catch (error) {
             console.log(error)
@@ -46,6 +50,8 @@ const LikeProvider = ({ children }) => {
                 }
             })
             setLikedVideos(response.data.likes)
+            setToastTitle("Removed from Liked Videos")
+            setShowToast(true)
         }
         catch (error) {
             console.log(error)

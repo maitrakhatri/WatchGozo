@@ -1,12 +1,14 @@
 import { createContext, useContext, useEffect, useState } from "react"
 import axios from "axios"
 import { token } from "./token-context"
+import { useToast } from "./toast-context"
 
 const WatchLaterContext = createContext()
 
 const WatchLaterProvider = ({ children }) => {
 
     const [watchLater, setWatchLater] = useState([])
+    const { setShowToast, setToastTitle } = useToast()
 
     const getWatchLater = async () => {
         try {
@@ -32,6 +34,8 @@ const WatchLaterProvider = ({ children }) => {
                 }
             })
             setWatchLater(response.data.watchlater)
+            setToastTitle("Added to Watch Later")
+            setShowToast(true)
         }
         catch (error) {
             console.log(error)
@@ -46,6 +50,8 @@ const WatchLaterProvider = ({ children }) => {
                 }
             })
             setWatchLater(response.data.watchlater)
+            setToastTitle("Removed from Watch Later")
+            setShowToast(true)
         }
         catch (error) {
             console.log(error)
