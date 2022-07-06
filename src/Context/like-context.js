@@ -11,22 +11,6 @@ const LikeProvider = ({ children }) => {
     const { token } = useToken()
     const { isLoggedIn } = useAuth()
 
-    const getLikedVideos = async () => {
-        if (isLoggedIn) {
-            try {
-                const response = await axios.get("/api/user/likes", {
-                    headers: {
-                        authorization: token
-                    }
-                })
-                setLikedVideos(response.data.likes)
-            }
-            catch (error) {
-                console.log(error)
-            }
-        }
-    }
-
     const addToLikedVideos = async (video) => {
         if (isLoggedIn) {
             try {
@@ -68,10 +52,27 @@ const LikeProvider = ({ children }) => {
     }
 
     useEffect(() => {
+
+        const getLikedVideos = async () => {
+            if (isLoggedIn) {
+                try {
+                    const response = await axios.get("/api/user/likes", {
+                        headers: {
+                            authorization: token
+                        }
+                    })
+                    setLikedVideos(response.data.likes)
+                }
+                catch (error) {
+                    console.log(error)
+                }
+            }
+        }
+        
         getLikedVideos()
     }, [])
 
-    return <LikeContext.Provider value={{ getLikedVideos, addToLikedVideos, removeFromLikedVideos, likedVideos }}>
+    return <LikeContext.Provider value={{ addToLikedVideos, removeFromLikedVideos, likedVideos }}>
         {children}
     </LikeContext.Provider>
 }
