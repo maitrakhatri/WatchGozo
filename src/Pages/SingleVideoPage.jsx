@@ -1,4 +1,10 @@
-import { Navbar, AddToPlaylistIcon, AddToPlaylistModal, AddToWatchLaterIcon } from "../Components";
+import {
+  Navbar,
+  AddToPlaylistIcon,
+  AddToPlaylistModal,
+  AddToWatchLaterIcon,
+  LikeIcon,
+} from "../Components";
 import "./CSS/single-video-page.css";
 import { useParams } from "react-router-dom";
 import axios from "axios";
@@ -52,14 +58,11 @@ export function SingleVideoPage() {
               <span class="channel-name">{ourVideo?.channelName}</span>
             </div>
             <div class="action">
-              <img
-                src="../assets/icons/thumb_up_alt_black_36dp.svg"
-                alt="like"
-              />
+              <LikeIcon video={ourVideo} />
 
               <AddToPlaylistIcon vid={ourVideo} />
 
-              <AddToWatchLaterIcon video={ourVideo}/>
+              <AddToWatchLaterIcon video={ourVideo} />
             </div>
           </div>
         </div>
