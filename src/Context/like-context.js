@@ -52,7 +52,6 @@ const LikeProvider = ({ children }) => {
     }
 
     useEffect(() => {
-
         const getLikedVideos = async () => {
             if (isLoggedIn) {
                 try {
@@ -70,7 +69,7 @@ const LikeProvider = ({ children }) => {
         }
         
         getLikedVideos()
-    }, [])
+    }, [isLoggedIn, token])
 
     return <LikeContext.Provider value={{ addToLikedVideos, removeFromLikedVideos, likedVideos }}>
         {children}

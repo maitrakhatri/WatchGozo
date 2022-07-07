@@ -15,23 +15,6 @@ const PlaylistProvider = ({ children }) => {
     const { token } = useToken()
     const { isLoggedIn } = useAuth()
 
-    const getAllPlaylists = async () => {
-        if (isLoggedIn) {
-            try {
-                const response = await axios.get("/api/user/playlists", {
-                    headers: {
-                        authorization: token
-                    }
-                });
-                setMyPlaylists(response.data.playlists)
-            }
-            catch (error) {
-                console.log(error)
-            }
-
-        }
-    }
-
     const createNewPlaylist = async (playlistName) => {
         try {
             const response = await axios.post("/api/user/playlists", {
@@ -113,10 +96,26 @@ const PlaylistProvider = ({ children }) => {
     }
 
     useEffect(() => {
+        const getAllPlaylists = async () => {
+            if (isLoggedIn) {
+                try {
+                    const response = await axios.get("/api/user/playlists", {
+                        headers: {
+                            authorization: token
+                        }
+                    });
+                    setMyPlaylists(response.data.playlists)
+                }
+                catch (error) {
+                    console.log(error)
+                }
+    
+            }
+        }
         getAllPlaylists()
-    }, [])
+    }, [isLoggedIn, token])
 
-    return <PlaylistContext.Provider value={{ getAllPlaylists, createNewPlaylist, deletePlaylist, getSpecificPlaylists, addVideoToPlaylist, deleteVideoFromPlaylist, myPlaylists, showModal, setShowModal, newPlaylist, setNewPlaylist, targetVideo, setTargetVideo, specificPlaylist }}>
+    return <PlaylistContext.Provider value={{ createNewPlaylist, deletePlaylist, getSpecificPlaylists, addVideoToPlaylist, deleteVideoFromPlaylist, myPlaylists, showModal, setShowModal, newPlaylist, setNewPlaylist, targetVideo, setTargetVideo, specificPlaylist }}>
         {children}
     </PlaylistContext.Provider>
 }

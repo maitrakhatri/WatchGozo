@@ -11,22 +11,6 @@ const WatchLaterProvider = ({ children }) => {
     const { token } = useToken()
     const { isLoggedIn } = useAuth()
 
-    const getWatchLater = async () => {
-        if (isLoggedIn) {
-            try {
-                const response = await axios.get('/api/user/watchlater', {
-                    headers: {
-                        authorization: token
-                    }
-                })
-                setWatchLater(response.data.watchlater)
-            }
-            catch (error) {
-                console.log(error)
-            }
-        }
-    }
-
     const addToWatchLater = async (video) => {
         if (isLoggedIn) {
             try {
@@ -68,10 +52,25 @@ const WatchLaterProvider = ({ children }) => {
     }
 
     useEffect(() => {
+        const getWatchLater = async () => {
+            if (isLoggedIn) {
+                try {
+                    const response = await axios.get('/api/user/watchlater', {
+                        headers: {
+                            authorization: token
+                        }
+                    })
+                    setWatchLater(response.data.watchlater)
+                }
+                catch (error) {
+                    console.log(error)
+                }
+            }
+        }
         getWatchLater()
-    }, [])
+    }, [isLoggedIn, token])
 
-    return <WatchLaterContext.Provider value={{ getWatchLater, addToWatchLater, removeFromWatchLater, watchLater }}>
+    return <WatchLaterContext.Provider value={{ addToWatchLater, removeFromWatchLater, watchLater }}>
         {children}
     </WatchLaterContext.Provider>
 }
