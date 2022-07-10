@@ -2,10 +2,10 @@ import { useState, useEffect } from "react";
 import { Category, Navbar, VideoThumbnail } from "../Components";
 import { useVideo } from "../Context";
 import "./CSS/homepage.css";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
 export function Homepage() {
-  const { categories, videos } = useVideo();
+  const { categories, videos, setSelectedCategory } = useVideo();
 
   const [trendingVideos, setTrendingVideos] = useState([]);
 
@@ -36,7 +36,12 @@ export function Homepage() {
 
         <div className="cat-catlog">
           {categories.map(({ id, categoryName, src }) => {
-            return <Category key={id} categoryName={categoryName} src={src} />;
+            return (
+              <Link to="/explore" onClick={() => setSelectedCategory(categoryName)}>
+                {" "}
+                <Category key={id} categoryName={categoryName} src={src} />{" "}
+              </Link>
+            );
           })}
         </div>
 
