@@ -2,20 +2,20 @@ import { useState, useEffect } from "react";
 import { Category, Navbar, VideoThumbnail } from "../Components";
 import { useVideo } from "../Context";
 import "./CSS/homepage.css";
+import { Link } from "react-router-dom"
 
 export function Homepage() {
-  
-  const { categories, videos } = useVideo()
+  const { categories, videos } = useVideo();
 
-  const [trendingVideos, setTrendingVideos] = useState([])
-
-  useEffect(() => {
-    setTrendingVideos(videos.slice(0,4))
-  }, [videos])
+  const [trendingVideos, setTrendingVideos] = useState([]);
 
   useEffect(() => {
-    document.title = "Home | WatchGozo"
-  }, [])
+    setTrendingVideos(videos.slice(0, 4));
+  }, [videos]);
+
+  useEffect(() => {
+    document.title = "Home | WatchGozo";
+  }, []);
 
   return (
     <div className="Homepage">
@@ -23,13 +23,13 @@ export function Homepage() {
 
       <main id="homepage">
         <div id="hero-video">
-          <a href="/">
+          <Link to="/watch=Al1jCxSzxcY">
             <img
               src="./assets/images/hero.jpg"
               alt="Moon Knight"
               class="img-res"
             />
-          </a>
+          </Link>
         </div>
 
         <h2 className="headings text-gray"> Explore </h2>
