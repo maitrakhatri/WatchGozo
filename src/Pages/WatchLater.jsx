@@ -1,8 +1,13 @@
+import { useEffect } from "react";
 import { Navbar, PlaylistVideo } from "../Components";
 import { useWatchLater } from "../Context/watchLater-context";
 
 export function WatchLater() {
   const { watchLater } = useWatchLater();
+
+  useEffect(() => {
+    document.title = "Watch Later | WatchGozo"
+  }, [])
 
   return (
     <div className="Watch-Later">

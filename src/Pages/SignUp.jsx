@@ -2,9 +2,14 @@ import { Link } from "react-router-dom";
 import { Navbar } from "../Components";
 import "./CSS/auth.css";
 import { useAuth } from "../Context";
+import { useEffect } from "react";
 
 export function SignUp() {
   const { dispatch, signupHandler, errorInSignup } = useAuth();
+
+  useEffect(() => {
+    document.title = "Sign Up | WatchGozo"
+  },[])
 
   return (
     <div className="signup auth">

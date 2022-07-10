@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Navbar, PlaylistIcon } from "../Components";
 import { useLike, usePlaylist, useWatchLater } from "../Context";
@@ -7,6 +8,10 @@ export function Playlists() {
   const { likedVideos } = useLike();
   const { watchLater } = useWatchLater();
   const { myPlaylists } = usePlaylist();
+
+  useEffect(() => {
+    document.title = "Playlists | WatchGozo"
+  },[])
 
   return (
     <div className="playlist-page">

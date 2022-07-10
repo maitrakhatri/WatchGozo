@@ -13,6 +13,10 @@ export function Homepage() {
     setTrendingVideos(videos.slice(0,4))
   }, [videos])
 
+  useEffect(() => {
+    document.title = "Home | WatchGozo"
+  }, [])
+
   return (
     <div className="Homepage">
       <Navbar />

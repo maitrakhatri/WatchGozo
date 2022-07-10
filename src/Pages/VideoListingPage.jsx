@@ -1,5 +1,5 @@
+import { useEffect } from "react";
 import { AddToPlaylistModal, Navbar, VideoThumbnail } from "../Components";
-// import { useEffect } from "react";
 import { usePlaylist, useVideo } from "../Context";
 
 export function VideoListingPage() {
@@ -11,6 +11,10 @@ export function VideoListingPage() {
     setSelectedCategory,
     filteredVideos,
   } = useVideo();
+
+  useEffect(() => {
+    document.title = "Explore | WatchGozo"
+  }, [])
 
   return (
     <div className="video-listing-page">
