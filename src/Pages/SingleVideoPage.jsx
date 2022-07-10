@@ -35,6 +35,10 @@ export function SingleVideoPage() {
     setOurVideo(allVideos.find((item) => item._id === videoId));
   }, [allVideos, videoId]);
 
+  useEffect(() => {
+    document.title = "WatchGozo"
+  }, [])
+
   return (
     <div className="single-video-page">
       <Navbar />

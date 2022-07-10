@@ -16,6 +16,10 @@ export function SpecificPlaylist() {
     );
   }, [playlistTitle, myPlaylists]);
 
+  useEffect(() => {
+    document.title = "WatchGozo"
+  }, [])
+
   return (
     <div className="Playlist-Page">
       <Navbar />

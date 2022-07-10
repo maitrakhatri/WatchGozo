@@ -10,6 +10,7 @@ import {
   SpecificPlaylist,
   LogIn,
   SignUp,
+  Four0FourPage,
 } from "./Pages";
 import { Routes, Route } from "react-router-dom";
 import { useToast, useToken, useAuth, RequiresAuth, LoggedIn } from "./Context";
@@ -34,6 +35,7 @@ function App() {
       {showToast && <Toast title={toastTitle} />}
 
       <Routes>
+        <Route path="*" element={ <Four0FourPage /> } />
         <Route path="/" element={<Homepage />} />
         <Route path="/explore" element={<VideoListingPage />} />
         <Route path="/watch=:videoId" element={<SingleVideoPage />} />

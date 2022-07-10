@@ -1,8 +1,13 @@
+import { useEffect } from "react";
 import { Navbar, VideoThumbnail } from "../Components";
 import { useHistory } from "../Context";
 
 export function History() {
   const { myHistory, clearHistory } = useHistory();
+
+  useEffect(() => {
+    document.title = "History | WatchGozo"
+  },[])
 
   return (
     <div className="history-page">

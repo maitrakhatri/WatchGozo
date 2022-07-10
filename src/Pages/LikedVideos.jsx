@@ -1,8 +1,13 @@
 import { Navbar, PlaylistVideo } from "../Components";
 import { useLike } from "../Context";
+import { useEffect } from "react";
 
 export function LikedVideos() {
   const { likedVideos } = useLike();
+
+  useEffect(() => {
+    document.title = "Liked Videos | WatchGozo"
+  },[])
 
   return (
     <div className="Watch-Later">
