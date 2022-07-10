@@ -15,7 +15,6 @@ export function Homepage() {
 
   useEffect(() => {
     document.title = "Home | WatchGozo";
-    setSelectedCategory("All")
   }, []);
 
   return (
