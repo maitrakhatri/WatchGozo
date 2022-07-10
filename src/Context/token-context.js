@@ -1,1 +1,14 @@
-export const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI4ZjViODE4YS01MThlLTQxMDItYWFiMy01MmJjMTA2ZDdkYjMiLCJlbWFpbCI6ImFkYXJzaGJhbGlrYUBnbWFpbC5jb20ifQ.gpTuwb73nWRPUVWNvSvjacIEgYmGRc0DbOswTAJAvVM"  
+import { createContext, useContext, useState } from "react";
+
+const TokenContext = createContext();
+
+const TokenProvider = ({ children }) => {
+
+    const [token, setToken] = useState(null);
+
+    return <TokenContext.Provider value={{ token, setToken }}> {children} </TokenContext.Provider>
+}
+
+const useToken = () => useContext(TokenContext);
+
+export { useToken, TokenProvider }

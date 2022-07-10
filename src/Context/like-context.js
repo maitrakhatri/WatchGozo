@@ -1,7 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react"
 import axios from "axios"
-import { token } from "./token-context"
-import { useToast } from "./toast-context"
+import { useAuth, useToast, useToken } from "."
 
 const LikeContext = createContext()
 
@@ -9,36 +8,30 @@ const LikeProvider = ({ children }) => {
 
     const [likedVideos, setLikedVideos] = useState([])
     const { setShowToast, setToastTitle } = useToast()
-
-    const getLikedVideos = async () => {
-        try {
-            const response = await axios.get("/api/user/likes", {
-                headers: {
-                    authorization: token
-                }
-            })
-            setLikedVideos(response.data.likes)
-        }
-        catch (error) {
-            console.log(error)
-        }
-    }
+    const { token } = useToken()
+    const { isLoggedIn } = useAuth()
 
     const addToLikedVideos = async (video) => {
-        try {
-            const response = await axios.post("/api/user/likes", {
-                video
-            }, {
-                headers: {
-                    authorization: token
-                }
-            })
-            setLikedVideos(response.data.likes)
-            setToastTitle("Added to Liked Videos")
-            setShowToast(true)
+        if (isLoggedIn) {
+            try {
+                const response = await axios.post("/api/user/likes", {
+                    video
+                }, {
+                    headers: {
+                        authorization: token
+                    }
+                })
+                setLikedVideos(response.data.likes)
+                setToastTitle("Added to Liked Videos")
+                setShowToast(true)
+            }
+            catch (error) {
+                console.log(error)
+            }
         }
-        catch (error) {
-            console.log(error)
+        else {
+            setToastTitle("You need to Login")
+            setShowToast(true)
         }
     }
 
@@ -59,10 +52,26 @@ const LikeProvider = ({ children }) => {
     }
 
     useEffect(() => {
+        const getLikedVideos = async () => {
+            if (isLoggedIn) {
+                try {
+                    const response = await axios.get("/api/user/likes", {
+                        headers: {
+                            authorization: token
+                        }
+                    })
+                    setLikedVideos(response.data.likes)
+                }
+                catch (error) {
+                    console.log(error)
+                }
+            }
+        }
+        
         getLikedVideos()
-    }, [])
+    }, [isLoggedIn, token])
 
-    return <LikeContext.Provider value={{ getLikedVideos, addToLikedVideos, removeFromLikedVideos, likedVideos }}>
+    return <LikeContext.Provider value={{ addToLikedVideos, removeFromLikedVideos, likedVideos }}>
         {children}
     </LikeContext.Provider>
 }

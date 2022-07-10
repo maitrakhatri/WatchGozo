@@ -1,0 +1,55 @@
+.auth main {
+    display: grid;
+    place-items: center;
+    padding: 6rem;
+}
+
+.auth .card {
+    padding: 2rem 6rem;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: white;
+    border: none;
+}
+
+.auth .card .title {
+    margin-bottom: 3rem;
+}
+
+.auth .card .input-group input {
+    margin-bottom: 1.5rem;
+    width: 20rem;
+}
+
+.auth .card .title, .card button , .card a {
+    align-self: center;
+}
+
+.auth .card button, .card .login-options {
+    width: 100%;
+}
+
+.auth .card > a {
+    text-decoration: none;
+    margin-top: 1rem;
+    color: inherit;
+}
+
+.auth .card .login-options {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.auth .card .login-options a {
+    margin-left: auto;
+    text-decoration: none;
+    color: var(--lightblue);
+}
+
+.login {
+    margin-bottom: 1rem;
+}
