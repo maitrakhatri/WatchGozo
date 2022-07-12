@@ -36,6 +36,8 @@
 ![Screenshot 2022-07-11 at 13-29-26 Liked Videos WatchGozo](https://user-images.githubusercontent.com/54719132/178217690-113ca19f-3df8-4fe2-ab45-d29cd1f5be14.png)
 ## Watch Later Page
 ![Screenshot 2022-07-11 at 13-29-34 Watch Later WatchGozo](https://user-images.githubusercontent.com/54719132/178217773-b3abb10c-7519-4ec9-a150-4f65d4aefdd2.png)
+## Playlist Page
+![Screenshot 2022-07-12 at 10-18-56 WatchGozo](https://user-images.githubusercontent.com/54719132/178410907-b5638449-ae20-4390-8334-1d4efcb7d42f.png)
 ## History Page
 ![Screenshot 2022-07-11 at 13-30-11 History WatchGozo](https://user-images.githubusercontent.com/54719132/178217811-f56643b0-f867-4d9e-8afb-d81632da5a4f.png)
 
