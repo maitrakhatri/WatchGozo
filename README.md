@@ -21,6 +21,8 @@
 ## Auth
 - Custom messages for Email not found and Incorrect Password during Log In.
 - Custom message for Email already exists during Sign Up
+# Demo
+https://user-images.githubusercontent.com/54719132/178468274-966d4402-b01d-40bb-b4b4-cf988b6e507c.mp4
 # Screens
 ## Homepage
 ![Screenshot 2022-07-11 at 13-23-45 Home WatchGozo](https://user-images.githubusercontent.com/54719132/178217366-cd762510-a0c0-4bdd-a54d-ca6385fd4134.png)
