@@ -18,18 +18,18 @@ export function Navbar() {
         </Link>
         <Link to="/watchlater">
           <img
-            src="./assets/icons/watch_later_white_36dp.svg"
+            src="../assets/icons/watch_later_white_36dp.svg"
             alt="watch later"
           />
         </Link>
         <Link to="/playlists">
           <img
-            src="./assets/icons/playlist_play_white_36dp.svg"
+            src="../assets/icons/playlist_play_white_36dp.svg"
             alt="playlist"
           />
         </Link>
         <Link to="/history">
-          <img src="./assets/icons/history_white_36dp.svg" alt="history" />
+          <img src="../assets/icons/history_white_36dp.svg" alt="history" />
         </Link>
         {isLoggedIn ? (
           <Link to="/">
