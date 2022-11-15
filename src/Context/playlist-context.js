@@ -1,5 +1,6 @@
 import axios from "axios";
 import { createContext, useContext, useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom";
 import { useAuth, useToast, useToken } from ".";
 
 const PlaylistContext = createContext();
@@ -14,6 +15,8 @@ const PlaylistProvider = ({ children }) => {
     const { setShowToast, setToastTitle } = useToast()
     const { token } = useToken()
     const { isLoggedIn } = useAuth()
+
+    const navigate = useNavigate()
 
     const createNewPlaylist = async (playlistName) => {
         try {
@@ -43,6 +46,7 @@ const PlaylistProvider = ({ children }) => {
                 }
             });
             setMyPlaylists(response.data.playlists)
+            navigate("/playlists")
         }
         catch (error) {
             console.log(error)
